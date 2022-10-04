@@ -1,0 +1,480 @@
+@import "./theme.scss";
+@import "./toggle.scss";
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+//
+// Button rounded
+
+.button-rounded {
+  border-radius: 50%;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  transition: all 0.3s ease-in-out;
+  &:active,
+  &:focus {
+    background-color: #e4e4e4;
+  }
+  &.button-rounded-sm {
+    width: 40px;
+    height: 40px;
+  }
+  &.button-rounded-md {
+    width: 60px;
+    height: 60px;
+  }
+  &.button-rounded-lg {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+//
+// Card
+
+// Colors
+
+$blue: #007bff !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #dc3545 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #28a745 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+$black: #000000 !default;
+
+$colors: () !default;
+$colors: map-merge(
+  (
+    "blue": $blue,
+    "indigo": $indigo,
+    "purple": $purple,
+    "pink": $pink,
+    "red": $red,
+    "orange": $orange,
+    "yellow": $yellow,
+    "green": $green,
+    "teal": $teal,
+    "cyan": $cyan,
+    "black": $black
+  ),
+  $colors
+);
+
+@each $color, $value in $colors {
+  .bg-#{$color} {
+    background-color: $value;
+  }
+}
+
+// Theme colors ( opcional )
+
+$primary: hsl(315, 72%, 27%);
+$secondary: hsl(321, 10%, 45%);
+$success: hsl(94, 38%, 59%);
+$warning: hsl(29, 96%, 56%);
+$danger: hsl(349, 96%, 31%);
+$info: hsl(192, 72%, 21%);
+$light: hsl(0, 0%, 95%);
+$dark: hsl(310, 9%, 13%);
+
+$theme-colors: ();
+$theme-colors: map-merge(
+  (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "warning": $warning,
+    "danger": $danger,
+    "info": $info,
+    "light": $light,
+    "dark": $dark
+  ),
+  $theme-colors
+);
+
+//
+// Utilities
+
+$weight-list: 300, 400, 500, 700, 900;
+
+@each $weight in $weight-list {
+  .weight-#{$weight} {
+    font-weight: $weight !important;
+  }
+}
+
+$font-size-map: 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 50, 60;
+
+@each $size in $font-size-map {
+  .font-size-#{$size} {
+    font-size: $size * 1px;
+  }
+}
+
+$gradients: ();
+$gradients: map-merge(
+  (
+    "primary": linear-gradient(to right, #d81d73, #a022ff),
+    "secondary": linear-gradient(to right, #a78c9d, #eadae5),
+    "success": linear-gradient(to right, #e8d442, #0b9a37),
+    "danger": linear-gradient(to right, #ec6f66, #f3a183),
+    "warning": linear-gradient(to right, #fb6923, #ffd400),
+    "info": linear-gradient(to right, #004eff, #14bcef)
+  ),
+  $gradients
+);
+
+@each $color, $value in $gradients {
+  .gradient-#{$color} {
+    background: $value;
+  }
+  .text-gradient-#{$color} {
+    background: $value;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .btn-gradient-#{$color} {
+    background: $value;
+  }
+}
+
+//
+// Button
+
+.btn-pill {
+  border-radius: 50rem;
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 0;
+}
+
+// Card variables
+
+$card-spacer: 1.5rem;
+$card-spacer-y: $card-spacer;
+$card-spacer-x: $card-spacer;
+$card-border-width: 1px;
+$card-border-radius: 1rem;
+$card-border-color: hsla(0, 0%, 0%, 0.125);
+$card-cap-bg: rgba(#000, 0.03);
+$card-cap-color: null;
+$card-height: null;
+$card-color: null;
+$card-bg: white;
+
+$card-img-overlay-padding: 1.25rem;
+
+$card-group-margin: 30px / 2;
+$card-deck-margin: $card-group-margin;
+
+$card-columns-gap: 1.25rem;
+$card-columns-margin: $card-spacer-y;
+
+//
+// Card config
+
+$new-styles: true;
+
+@if ($new-styles) {
+  .card {
+    border: 0;
+    border-radius: $card-border-radius;
+    overflow: hidden;
+    .card-img,
+    .card-img-overlay {
+      border-radius: 0 !important;
+    }
+  }
+  .card .card-header {
+    border-top-left-radius: $card-border-radius;
+    border-top-right-radius: $card-border-radius;
+  }
+  .card-header,
+  .card-footer {
+    background-color: transparent;
+    border: 0;
+  }
+  .card-header,
+  .card-body,
+  .card-footer {
+    padding: $card-spacer;
+  }
+  .card-img,
+  .card-img-top {
+    border-radius: 0 !important;
+  }
+  .card-img,
+  .card-img-bottom {
+    border-radius: 0 !important;
+  }
+
+  // Button
+
+  .btn {
+    text-transform: uppercase;
+  }
+}
+
+//
+// Card footer
+
+.--card-footer {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border-bottom-right-radius: $card-border-radius;
+  border-bottom-left-radius: $card-border-radius;
+}
+
+.--card-footer-inner {
+  margin: 0;
+  padding: $card-spacer-x;
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1.5;
+  letter-spacing: 0.0178571em;
+  border-bottom-right-radius: $card-border-radius;
+  border-bottom-left-radius: $card-border-radius;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  &:focus,
+  &.focus {
+    background-color: #f8f9fa;
+    outline: 0;
+  }
+}
+
+//
+// Heading
+
+.card-heading {
+  font-weight: 700;
+}
+
+//
+// Media
+
+.card-media {
+  display: flex;
+}
+
+//
+// Media link
+
+.card-media-link {
+  text-decoration: none;
+}
+
+//
+// Card cup
+
+.has-cup {
+  .avatar-container {
+    margin-top: -4rem;
+  }
+}
+.--card-cup {
+  height: 130px;
+  width: 100%;
+  border-top-right-radius: 0.8rem;
+  border-top-left-radius: 0.8rem;
+}
+
+//
+// Avatar
+
+.avatar-img {
+  border-radius: 50%;
+}
+
+//
+// Avatar Borders
+
+.avatar-border .avatar-img {
+  border: 5px solid #fff;
+}
+.avatar-doble-border .avatar-img {
+  border: 2px solid rgba(255, 255, 255, 0);
+  box-shadow: 0px 0px 0px 3px #495057;
+}
+
+@each $color, $border-color in $theme-colors {
+  .avatar-border.border-#{$color} .avatar-img {
+    border-color: $border-color;
+  }
+  .avatar-doble-border.border-#{$color} .avatar-img {
+    border-color: rgba(255, 255, 255, 0) !important;
+    box-shadow: 0px 0px 0px 3px $border-color;
+  }
+}
+
+//
+// Avatar history
+
+.avatar-container {
+  position: relative;
+  .avatar-image {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    border-radius: 50%;
+  }
+}
+
+.avatar-container .avatar-border-effect {
+  fill: none;
+  stroke: #8a3ab9;
+  stroke-linecap: round;
+  stroke-width: 3.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: stroke-animation 6s ease-out infinite alternate;
+  // animation: stroke-animation 6s cubic-bezier(0.77, 0, 0.175, 1) infinite alternate;
+}
+
+@keyframes stroke-animation {
+  0% {
+    stroke: #f800a5;
+    stroke-dasharray: 1;
+  }
+  50% {
+    stroke: #ff4800;
+  }
+  80% {
+    stroke: #ffd400;
+  }
+  100% {
+    stroke: #e1f717;
+    transform: rotate(180deg);
+    stroke-dasharray: 10;
+  }
+}
+
+//
+// Card link
+
+.card-link {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.0178571em;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+
+  + .card-link {
+    margin-left: $card-spacer-x;
+  }
+}
+
+//
+// Card img overlay
+
+@each $color, $value in $colors {
+  // No need white and gray
+  .card-img-overlay.card-overlay-#{$color} {
+    background-color: darken(rgba($value, 0.7), 30%);
+  }
+}
+
+//
+// Card overlay caption
+
+.card-overlay-caption {
+  background: rgba(0, 0, 0, 0)
+    linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.98)) repeat scroll 0% 0%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 3.5rem 1.5rem 1.5rem 1.5rem;
+}
+
+//
+// Card date
+
+.card-date {
+  border-top-left-radius: $card-border-radius;
+  border-bottom-right-radius: $card-border-radius;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  color: rgb(19, 20, 24);
+  padding: 0.8em;
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  .card-date-day {
+    font-size: 2rem;
+  }
+  .card-date-month {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+  }
+  .card-date-year {
+    font-size: 1rem;
+  }
+}
+
+//
+// Media stacked
+
+.media-stacked {
+  .avatar-img {
+    border-radius: 0;
+  }
+}
+
+.media-stacked-right {
+  flex-direction: row-reverse;
+  .avatar-img {
+    border-radius: 0;
+  }
+}
+
+//
+// Card shadow
+
+.card-shadow {
+  box-shadow: 0px 2px 9px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  &.shadow-md {
+    box-shadow: 0px 8px 15px -1px rgb(0 0 0 / 20%),
+      0px 8px 15px -1px rgb(0 0 0 / 14%), 0px 8px 15px -1px rgb(0 0 0 / 12%);
+  }
+  &.shadow-lg {
+    box-shadow: 0px 18px 20px -1px rgb(0 0 0 / 10%),
+      0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  }
+}

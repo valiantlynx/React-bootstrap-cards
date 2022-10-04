@@ -1,0 +1,27 @@
+
+
+// Theme
+
+:root{
+  --body-bg:                      hsl(207, 20%, 89%);
+  --body-color:                   hsl(210, 11%, 15%);
+  --body-color-hover:             hsl(0, 0%, 0%);
+  --footer-social-link-hover-bg:  hsl(0, 0%, 93%);
+}
+
+// Dark mode
+
+.dark-theme{
+  --body-bg:                      hsl(210, 11%, 7%);
+  --body-color:                   hsl(210, 22%, 87%);
+  --body-color-hover:             hsl(0, 0%, 100%);
+  --footer-social-link-hover-bg:  hsl(210, 8%, 25%);
+}
+
+body{
+  background-color: var(--body-bg);
+}
+
+.header-example{
+  color: var(--body-color);
+}

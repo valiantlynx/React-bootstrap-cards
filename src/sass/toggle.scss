@@ -1,0 +1,168 @@
+
+
+//
+// Swith toggle theme dark o light
+
+
+//
+// variables
+
+$addonz-checkbox-radio-switch-bg: #151a20;
+$addonz-checkbox-radio-switch-transition: opacity 0.3s, transform 0.2s;
+
+$addonz-switch-inner-before-bg:rgb(173, 181, 189);
+$addonz-switch-inner-after-bg: white;
+$addonz-switch-inner-after-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+$addonz-switch-inner-after-transition: background-color 0.2s, transform 0.2s;
+$addonz-switch-input-checked-bg :hsl(184, 70%, 36%);
+$addonz-switch-input-checked-more-addonz-switch-inner-after-bg: hsl(184, 64%, 46%);
+$addonz-switch-input-checked-active-more-addonz-switch-inner-before-bg: rgb(173, 181, 189);
+
+$addonz-switch-input-active-transition: transform 0s, opacity 0s;
+
+// disabled
+$addonz-switch-input-disabled-more-addonz-switch-inner: $addonz-switch-input-checked-more-addonz-switch-inner-after-bg;
+$addonz-switch-input-disabled-more-addonz-switch-inner-before-bg:  fade-out(#343a40, 0.60%) !important;
+
+
+.addonz-switch {
+  z-index: 0;
+  position: relative;
+  display: inline-block;
+}
+
+
+//
+// Input
+
+.addonz-switch > .addonz-switch-input {
+  appearance: none;
+  z-index: -1;
+  position: absolute;
+  right: 4px;
+  top: -10px;
+  display: block;
+  margin: 0;
+  background-color: $addonz-checkbox-radio-switch-bg;
+  outline: none;
+  transform: scale(1);
+  pointer-events: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  opacity: 0;
+  transition: $addonz-checkbox-radio-switch-transition;
+}
+
+
+//
+// Inner
+
+.addonz-switch{
+  > .addonz-switch-inner {
+    display: inline-block;
+    width: 100%;
+    font-weight: 500;
+    cursor: pointer;
+
+    // track
+
+    &::before {
+      content: "";
+      float: right;
+      display: inline-block;
+      margin: 5px 0 5px 15px;
+      border-radius: 7px;
+      width: 36px;
+      height: 14px;
+      background-color: $addonz-switch-inner-before-bg;
+      vertical-align: top;
+      transition: background-color 0.2s, opacity 0.2s;
+    }
+
+    // Thumb
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      right: 1rem;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      background-color: $addonz-switch-inner-after-bg;
+      box-shadow: $addonz-switch-inner-after-shadow;
+      transition: $addonz-switch-inner-after-transition;
+    }
+  }
+}
+
+
+//
+// Checked
+
+.addonz-switch > .addonz-switch-input:checked {
+  right: -14px;
+  background-color: $addonz-switch-input-checked-bg;
+}
+.addonz-switch > .addonz-switch-input:checked + .addonz-switch-inner::before {
+  background-color: $addonz-switch-input-checked-bg;
+}
+.addonz-switch > .addonz-switch-input:checked + .addonz-switch-inner::after {
+  background-color: $addonz-switch-input-checked-more-addonz-switch-inner-after-bg;
+  transform: translateX(16px);
+}
+
+
+//
+// Hover and focus
+
+.addonz-switch{
+  &:hover{
+    > .addonz-switch-input {
+      opacity: .08;
+    }
+    > .addonz-switch-input:focus {
+      opacity: .18;
+    }
+  }
+  > .addonz-switch-input:focus,
+  > .addonz-switch-input.focus {
+    opacity: .2;
+  }
+}
+
+
+//
+// Active
+
+.addonz-switch > .addonz-switch-input:active {
+  opacity:1;
+  transform: scale(0);
+  transition:$addonz-switch-input-active-transition;
+}
+.addonz-switch > .addonz-switch-input:active + .addonz-switch-inner::before {
+  background-color: $addonz-switch-input-checked-bg;
+}
+.addonz-switch > .addonz-switch-input:checked:active + .addonz-switch-inner::before {
+  background-color: $addonz-switch-input-checked-active-more-addonz-switch-inner-before-bg;
+}
+
+
+//
+// Disabled
+
+.addonz-switch > .addonz-switch-input:disabled {
+  opacity: 0;
+}
+.addonz-switch > .addonz-switch-input:disabled + .addonz-switch-inner {
+  color: $addonz-switch-input-disabled-more-addonz-switch-inner;
+  opacity: .70;
+  cursor: default;
+}
+.addonz-switch > .addonz-switch-input:disabled + .addonz-switch-inner::before {
+  background-color: $addonz-switch-input-disabled-more-addonz-switch-inner-before-bg;
+}
+.addonz-switch > .addonz-switch-input:checked:disabled + .addonz-switch-inner::before {
+  background-color: $addonz-switch-input-disabled-more-addonz-switch-inner-before-bg;
+}
